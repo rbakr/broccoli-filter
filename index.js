@@ -19,6 +19,7 @@ function Filter (inputTree, options) {
   if (options.targetExtension != null) this.targetExtension = options.targetExtension
   if (options.inputEncoding !== undefined) this.inputEncoding = options.inputEncoding
   if (options.outputEncoding !== undefined) this.outputEncoding = options.outputEncoding
+  if (options.processString !== undefined) this.processString = options.processString.bind(this);
 }
 
 Filter.prototype.rebuild = function () {
@@ -147,6 +148,10 @@ Filter.prototype.processAndCacheFile = function (srcDir, destDir, relativePath) 
     self._cache[relativePath] = cacheEntry
   }
 }
+
+Filter.prototype.processString = function(str) {
+  return str;
+};
 
 Filter.prototype.processFile = function (srcDir, destDir, relativePath) {
   var self = this
